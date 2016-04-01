@@ -68,7 +68,8 @@
 (defn -main [& args]
   (let [source-code-mode (first args)
         program-file (second args)]
-    (assert program-file "Please specify a brainfuck source mode as the first argument and the actual source as the second...")
+    (assert (and program-file source-code-mode)
+            "Please specify a brainfuck source mode [file VS source] as the first argument and the actual source  as the second...")
     (println ((compile-bf :interactive (cond-> program-file
                                                (= source-code-mode "file") slurp))))))
 
